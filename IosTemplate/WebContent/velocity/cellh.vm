@@ -1,0 +1,12 @@
+
+#import <UIKit/UIKit.h>
+
+@interface ${className}ViewCell : UITableViewCell
+@property (nonatomic,retain) UIButton *picBtnView;
+@property (nonatomic,retain) UILabel *title;
+@property (nonatomic,retain) UILabel *price;
+@property (nonatomic,retain) UILabel *name;
+@property (nonatomic,retain) UIView *tagView;;
+@property (nonatomic,retain) UILabel *distance;
+@property (nonatomic,retain) UIButton *cellBtn;
+@end

@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE sqlMap PUBLIC "-//ibatis.apache.org//DTD SQL Map 2.0//EN" "http://ibatis.apache.org/dtd/sql-map-2.dtd" >
+<sqlMap namespace="COMMON">
+	<!-- 分页参数对象 -->
+	<typeAlias alias="PageParameter" type="com.netcast.zjgd_htgl.vo.PageParameter"/>
+	  <!-- MySQL 分页 -->  
+ <sql id="mysql_Pagination_Limit" >  
+   limit #page_begin#,#page_end#   
+ </sql>  
+	<!-- Oracle分页开始段 -->
+	<sql id="PAGING_START">
+		<dynamic>
+			<isNotNull property="page">
+				<![CDATA[
+                   select * from (
+                       select rownum rnm, z.* from (
+               ]]>
+			</isNotNull>
+		</dynamic>
+	</sql>
+	<!-- Oracle分页结尾段 -->
+	<sql id="PAGING_END">
+		<dynamic>
+			<isNotNull property="page">
+				<![CDATA[
+                       ) z where rownum <= #page_end#
+                   ) where rnm >= #page_begin#
+               ]]>
+			</isNotNull>
+		</dynamic>
+	</sql>
+	<!-- 排序SQL段 -->
+	<sql id="ORDER_BY">
+		<dynamic>
+			<isNotEmpty property="order">
+		    	order by $order$
+		    	<isNotEmpty property="by">
+			    	$by$
+		    	</isNotEmpty>
+		    </isNotEmpty>
+		</dynamic>
+	</sql>
+</sqlMap>

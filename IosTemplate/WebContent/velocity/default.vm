@@ -1,0 +1,479 @@
+//
+//  ${className}ViewController.m
+//  SmartCommunity
+//
+//  Created by templates on 16/9/27.
+//  Copyright © 2016年 templates. All rights reserved.
+//
+
+#import "${className}ViewController.h"
+#import "${className}ViewCell.h"
+
+@interface ${className}ViewController ()
+
+@end
+
+@implementation ${className}ViewController
+
+
+- (void)viewDidLoad {
+    [super viewDidLoad];
+    // Do any additional setup after loading the view.
+    self._titleView._titleLabel.text=@"预约办事";
+#foreach($contol in $list)
+#if(${contol.labelType}==1)
+    UIView * ${contol.labelName}View = [[UIView alloc]initWithFrame:CGRectMake(0, 0, 200, 80)];
+    [self.view addSubview: ${contol.labelName}View];
+#end
+    
+    
+#if(${contol.labelType}==18)
+    UIImageView * ${contol.labelName}ImageView = [[UIImageView alloc]initWithFrame:CGRectMake(0, 0, 200, 80)];
+    ${contol.labelName}ImageView.image=[UIImage imageNamed:@"pic.png"];
+    [self.view addSubview: ${contol.labelName}ImageView];
+#end
+#if(${contol.labelType}==3)if (!_tableView)
+    {
+        ${contol.labelName}tableView =[[UITableView alloc] initWithFrame:CGRECT_HAVE_NAV(0,1,320,self.view.frame.size.height  - TITLE_BAR_HEIGHT-COMMONHEIGHT )];
+        //[[PullingRefreshTableView alloc] initWithFrame:CGRectMake(0,44,320,self.view.frame.size.height  - 44 ) style:UITableViewStylePlain];
+        ${contol.labelName}tableView.autoresizingMask = UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleHeight;
+        ${contol.labelName}tableView.delegate =self;
+        ${contol.labelName}tableView.dataSource = self;
+        ${contol.labelName}tableView.tag=99;
+        ${contol.labelName}tableView.separatorStyle=UITableViewCellSeparatorStyleNone;
+        [${contol.labelName}tableView setBackgroundColor:[UIColor whiteColor]];
+        [self.view addSubview: ${contol.labelName}tableView];
+    }#end
+    
+#if(${contol.labelType}==4)
+    UILabel *${contol.labelName}Label = [[UILabel alloc] initWithFrame:CGRectMake1(10, 42/2, 320, 14)];
+    ${contol.labelName}Label.text = @"标签控件：";
+    ${contol.labelName}Label.font=[UIFont systemFontOfSize:14];
+    ${contol.labelName}Label.backgroundColor = [UIColor clearColor];
+    ${contol.labelName}Label.textColor =  [ColorUtil colorWithHexString:@"#333333"];
+    ${contol.labelName}Label.textAlignment=NSTextAlignmentLeft;
+    [self.view addSubview: ${contol.labelName}Label];
+#end
+#if(${contol.labelType}==11)
+    UIButton *${contol.labelName}Btn = [[UIButton alloc] initWithFrame:CGRectMake(0, 0,100, 100)];
+    ${contol.labelName}Btn.titleLabel.font=[UIFont systemFontOfSize:12];
+    ${contol.labelName}Btn.titleLabel.textAlignment=NSTextAlignmentLeft;
+    [${contol.labelName}Btn setImage:[UIImage imageNamed:@"社区服务6_01_14"] forState:UIControlStateNormal];
+    [${contol.labelName}Btn setImage:[UIImage imageNamed:@"社区服务6_01_14"] forState:UIControlStateHighlighted];
+    ${contol.labelName}Btn.contentHorizontalAlignment=UIControlContentHorizontalAlignmentLeft ;
+    [${contol.labelName}Btn setTitleColor:[ColorUtil colorWithHexString:@"#328ff9"] forState:UIControlStateNormal];
+    [${contol.labelName}Btn addTarget:self action:@selector(btnClick:) forControlEvents:UIControlEventTouchUpInside];
+    ${contol.labelName}Btn.tag=$!{velocityCount};
+    [self.view addSubview:${contol.labelName}Btn];
+#end
+#if(${contol.labelType}==5)
+    UITextField *[${contol.labelName}textField = [[UITextField alloc] initWithFrame:CGRectMake1(68, 273, 220, 14)];
+    ${contol.labelName}textField.placeholder=@"密码";
+    ${contol.labelName}textField.secureTextEntry = YES;
+    ${contol.labelName}textField.font=[UIFont systemFontOfSize:14];
+    ${contol.labelName}textField.delegate=self;
+    ${contol.labelName}textField.borderStyle = UITextBorderStyleNone;
+    ${contol.labelName}textField.contentVerticalAlignment = UIControlContentVerticalAlignmentCenter;
+    ${contol.labelName}textField.returnKeyType=UIReturnKeyDone;
+    ${contol.labelName}textField.clearButtonMode = UITextFieldViewModeWhileEditing;
+    [self.view addSubview [${contol.labelName}textField];
+#end
+#if(${contol.labelType}==6)
+     UITextView *${contol.labelName}TextView  = [[UITextView alloc]initWithFrame:CGRectMake(15, 32, 290, _contentHeight)];
+     ${contol.labelName}TextView.font = [UIFont systemFontOfSize:14.0];
+     ${contol.labelName}TextView.textColor = [ColorUtil colorWithHexString:@"#333333"];
+     ${contol.labelName}TextView.editable = NO;
+     [${contol.labelName}TextView setBackgroundColor:[UIColor clearColor]];
+     ${contol.labelName}TextView.text = @"";
+     [self.view addSubview ${contol.labelName}TextView];
+#end
+#if(${contol.labelType}==7)
+     UIWebView *${contol.labelName}WebView = [[UIWebView alloc]initWithFrame:CGRectMake(0, 20, 320, 548)];
+     NSString* shopUrl = @"http://www.jinxinol.com.cn:8081/shopping/wap/index.htm";
+     NSURLRequest *request =[NSURLRequest requestWithURL:[NSURL URLWithString:shopUrl]];
+     [self.view addSubview: ${contol.labelName}WebView];
+     [${contol.labelName}WebView loadRequest:request];
+     ${contol.labelName}WebView.delegate = self;
+     
+#end
+     
+#if(${contol.labelType}==8)
+     [datePicker removeFromSuperview];
+     [pickView removeFromSuperview];
+     if (datePicker==nil) {
+         pickView = [[UIView alloc]initWithFrame:CGRectMake(0, self.view.frame.size.height-300, 320, 44)];
+         [pickView setBackgroundColor:COLOR_WITH_RGB(218,231,252,1)];
+         UIButton* scoreBtn = [UIButton buttonWithType:UIButtonTypeCustom];
+         scoreBtn.frame = CGRectMake(260, 10, 50, 24);
+         [scoreBtn setTitle:@"确定" forState:UIControlStateNormal];
+         [scoreBtn addTarget:self action:@selector(scoreBtnClicked:) forControlEvents:UIControlEventTouchUpInside];
+         [pickView addSubview:scoreBtn];
+         
+         
+         datePicker = [[UIDatePicker alloc] initWithFrame:CGRectMake(0, self.view.frame.size.height-300+44, 320, 300-44)];
+         datePicker.datePickerMode = UIDatePickerModeDateAndTime;
+         // [datePicker selectRow:_nowSelect inComponent:0 animated:YES];
+         //OPTIONAL: Choose the background color
+         [ datePicker addTarget:self action:@selector(dateChanged:) forControlEvents:UIControlEventValueChanged ];
+         [datePicker setBackgroundColor:[UIColor whiteColor]];
+         
+         [datePicker becomeFirstResponder];
+     }
+     [self.view addSubview:pickView];
+     [self.view addSubview:datePicker];
+#end
+#if(${contol.labelType}==2)
+     UIScrollView *${contol.labelName}scrollView =[[UIScrollView alloc]initWithFrame:CGRectMake(50,0,200,400)];
+     ${contol.labelName}scrollView.contentSize=CGSizeMake(400,400);
+     ${contol.labelName}scrollView.backgroundColor=[UIColororangeColor];
+     ${contol.labelName}scrollView.pagingEnabled=YES;//是否自己动适应
+     ${contol.labelName}scrollView addSubview:scrollview];
+    ${contol.labelName}scrollView.maximumZoomScale=2.0;
+    ${contol.labelName}scrollView.minimumZoomScale=0.5;
+    ${contol.labelName}scrollView.decelerationRate=1;
+    ${contol.labelName}scrollView.delegate=self;
+    //canCancelContentTouches:YES-移动手指足够长度触发滚动事件,NO-scrollView发送 tracking events 后，就算用户移动手指，scrollView也不会滚动。
+    ${contol.labelName}scrollView.canCancelContentTouches=NO;
+    //当值是 YES的时候，用户触碰开始.要延迟一会，看看是否用户有意图滚动。假如滚动了，那么捕捉 touch-down事件，否则就不捕捉。假如值是NO，当用户触碰， scroll view会立即触发
+    ${contol.labelName}scrollView.delaysContentTouches=YES;
+#end#end
+    [self creatRightStringBtn:@"新增"];
+    
+    
+}
+-(void)dealloc{
+    [[NSNotificationCenter defaultCenter]  removeObserver:self name:@"refreshList" object:nil];
+}
+#foreach($contol in $list)
+#if(${contol.labelType}==11)
+-(void)btnClick:(id)sender{
+	UIButton btn=sender;
+}
+#break
+#end
+
+#if(${contol.labelType}==6)-(void)textViewDidChange:(UITextView *)textView
+{
+    
+    if (textView.text.length == 0) {
+        uilabel.text = @"请输入您要预约事项的详细内容";
+    }else{
+        uilabel.text = @"";
+    }
+}
+-(BOOL)textView:(UITextView *)textView shouldChangeTextInRange:(NSRange)range replacementText:(NSString*)text
+{
+    
+    if ([text isEqualToString:@"\n"]) {
+        
+        [userName resignFirstResponder];
+        [infoTextView resignFirstResponder];
+        return NO;
+        
+    }
+    
+    return YES;
+    
+}
+#break
+#end
+#if(${contol.labelType}==7)
+- (BOOL)webView:(UIWebView *)webView shouldStartLoadWithRequest:(NSURLRequest *)request navigationType:(UIWebViewNavigationType)navigationType{
+    
+}
+- (void)webViewDidStartLoad:(UIWebView *)webView{
+    
+}
+- (void)webViewDidFinishLoad:(UIWebView *)webView{
+    
+}
+- (void)webView:(UIWebView *)webView didFailLoadWithError:(nullable NSError *)error{
+    
+}
+#break
+#end
+#if(${contol.labelType}==8)
+-(void)dateChanged:(id)sender
+{
+    NSDate *date= datePicker.date;
+    timeLabel.text = [self stringFromDate:date];
+}
+- (NSString *)stringFromDate:(NSDate *)date{
+    
+    NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
+    //zzz表示时区，zzz可以删除，这样返回的日期字符将不包含时区信息。
+    
+    [dateFormatter setDateFormat:@"yyyy-MM-dd HH:mm:ss zzz"];
+    NSString *destDateString = [dateFormatter stringFromDate:date];
+    return destDateString;
+    
+}
+-(void)scoreBtnClicked:(id)sender
+{
+    [datePicker removeFromSuperview];
+    [pickView removeFromSuperview];
+    NSDate *date= datePicker.date;
+    timeLabel.text = [self stringFromDate:date];
+})
+#break
+#end
+#if(${contol.labelType}==2)
+#pragma mark UIScrollViewDelegate
+//只要滚动了就会触发
+- (void)scrollViewDidScroll:(UIScrollView *)scrollView;
+
+{
+    
+    //    NSLog(@" scrollViewDidScroll");
+    
+    NSLog(@"ContentOffset  x is  %f,yis %f",scrollView.contentOffset.x,scrollView.contentOffset.y);
+    
+}
+//开始拖拽视图
+- (void)scrollViewWillBeginDragging:(UIScrollView *)scrollView;
+
+{
+    
+    NSLog(@"scrollViewWillBeginDragging");
+    
+}
+//完成拖拽
+
+- (void)scrollViewDidEndDragging:(UIScrollView *)scrollView willDecelerate:(BOOL)decelerate;
+
+{
+    
+    NSLog(@"scrollViewDidEndDragging");
+    
+}
+//将开始降速时
+- (void)scrollViewWillBeginDecelerating:(UIScrollView *)scrollView;
+
+{
+    
+    NSLog(@"scrollViewWillBeginDecelerating");
+    
+}
+//减速停止了时执行，手触摸时执行执行
+
+- (void)scrollViewDidEndDecelerating:(UIScrollView *)scrollView;
+
+{
+    
+    NSLog(@"scrollViewDidEndDecelerating");
+    
+}
+//滚动动画停止时执行,代码改变时出发,也就是setContentOffset改变时
+
+- (void)scrollViewDidEndScrollingAnimation:(UIScrollView *)scrollView;
+
+{
+    
+    NSLog(@"scrollViewDidEndScrollingAnimation");
+    
+}
+//设置放大缩小的视图，要是uiscrollview的subview
+- (UIView *)viewForZoomingInScrollView:(UIScrollView *)scrollView;
+
+{
+    
+    NSLog(@"viewForZoomingInScrollView");
+    
+    return viewA;
+    
+}
+//完成放大缩小时调用
+
+- (void)scrollViewDidEndZooming:(UIScrollView *)scrollView withView:(UIView *)view atScale:(float)scale;
+
+{
+    
+    viewA.frame=CGRectMake(50,0,100,400);
+    
+    NSLog(@"scale between minimum and maximum. called after any 'bounce' animations");
+    
+}// scale between minimum and maximum. called after any 'bounce' animations
+//如果你不是完全滚动到滚轴视图的顶部，你可以轻点状态栏，那个可视的滚轴视图会一直滚动到顶部，那是默认行为，你可以通过该方法返回NO来关闭它
+
+- (BOOL)scrollViewShouldScrollToTop:(UIScrollView *)scrollView;
+
+{
+    
+    NSLog(@"scrollViewShouldScrollToTop");
+    
+    returnYES;
+    
+}
+- (void)scrollViewDidScrollToTop:(UIScrollView *)scrollView;
+
+{
+    
+    NSLog(@"scrollViewDidScrollToTop");
+    
+}
+#break
+#end
+#end
+-(void)viewWillAppear:(BOOL)animated{
+    [super viewWillAppear:animated];
+    
+    // [[NSNotificationCenter defaultCenter]  removeObserver:self name:@"refreshList" object:nil];
+    // [[NSNotificationCenter defaultCenter]  addObserver:self selector:@selector (queryGameList) name:@"refreshList" object:nil];
+}
+- (void)clickRightButton:(id)sender
+{
+    NSLog(@"右边被点击");
+    
+}
+- (void)didReceiveMemoryWarning {
+    [super didReceiveMemoryWarning];
+    // Dispose of any resources that can be recreated.
+}
+//-(void)queryData
+//{
+//
+//    [SVProgressHUD showWithStatus:@"查询..." maskType:SVProgressHUDMaskTypeClear];
+//    NSDictionary* params = [PackagePlatformMessage getAppointmentList:0];
+//    [[PlatformNetAgent sharedInstance] post:HTTP_ACCESSPATH params:params forWait:NO onCompletion:^(id obj) {
+//        [SVProgressHUD dismiss];
+//        ResponseDictionary* result = [ResponseDictionary createByData:(NSData*)obj];
+//        if ([[result getResultCode] isEqualToString:CONNECTION_SUCCESS]) {
+//
+//            id info = [result.response objectForKey:@"serviceContent"];
+//            if ([info isKindOfClass:[NSDictionary class]])
+//            {
+//               id appointmentList = [info objectForKey:@"appointmentList"];
+//                if ([appointmentList isKindOfClass:[NSArray class]]) {
+//                    [self.array removeAllObjects];
+//                    [self.array addObjectsFromArray:appointmentList];
+//                    [_tableView reloadData];
+//                }
+//
+//            }
+//        }else
+//        {
+//            [CommonTools showToast:[result geterrorDesc]];
+//        }
+//
+//    } onError:^(NSError *error) {
+//        ////登陆失败（网络无响应）
+//        [SVProgressHUD dismiss];
+//        [CommonTools showToast:@"网络不给力，稍后再试"];
+//    }];
+//}
+
+#foreach($contol in $list)
+#if(${contol.labelType}==3)
+- (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
+    
+    
+    
+    return 136/2;
+}
+#pragma mark -
+#pragma mark Table view data source
+
+- (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
+    
+    return 1;
+    
+}
+- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
+    // Return the number of rows in the section.
+    
+    switch (section) {
+        case 0:
+        {
+            return [self.array count];
+        }
+            break;
+            
+            
+        default:
+            break;
+    }
+    
+    return 0;
+    
+}
+-(void)tableView:(UITableView*)tableView  willDisplayCell:(UITableViewCell*)cell forRowAtIndexPath:(NSIndexPath*)indexPath
+{
+    [cell setBackgroundColor:[UIColor clearColor]];
+    
+}
+// Customize the appearance of table view cells.
+- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
+    
+    
+    
+    
+    
+    //        AppDelegate *delegate = (AppDelegate *) [[UIApplication sharedApplication] delegate];
+    //         UINavigationController *nav=(UINavigationController *)delegate.sideBarController.centerViewController;
+    
+    
+    static   NSString *CellIdentifier = @"CellIdentifier";
+    
+    NSDictionary *dic=[self.array objectAtIndex:indexPath.row];
+    ${className}ViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
+    if (cell == nil) {
+        cell = [[${className}ViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellIdentifier];
+        
+        
+        
+    }
+    [cell setBackgroundColor:[UIColor whiteColor]];
+    // cell.textLabel.text=[NSString stringWithFormat:@"%d",indexPath.row];
+    
+    cell.title.text=[NSString stringWithFormat:@"%@",[dic objectForKey:@"type"]];
+    
+    double timestamp = [[dic objectForKey:@"time"]doubleValue]/1000;
+    NSDate* crDate = [NSDate dateWithTimeIntervalSince1970:timestamp];
+    NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
+    [dateFormatter setDateFormat:@"MM-dd HH:mm"];
+    NSString *strDate = [dateFormatter stringFromDate:crDate];
+    cell.price.text=[NSString stringWithFormat:@"预约时间:%@",strDate];
+    
+    //    cell.title.text=[NSString stringWithFormat:@"%@",@"标题标题标题标题标题标题标题"];
+    //    cell.price.text=[NSString stringWithFormat:@"%@",@"内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容"];
+    NSString *content=cell.price.text;
+    UIFont *font = [UIFont systemFontOfSize:14];//跟label的字体大小一样
+    CGSize size = CGSizeMake(300, 29999);//跟label的宽设置一样
+    if (isIOS7)
+    {
+        NSDictionary * dic = [NSDictionary dictionaryWithObjectsAndKeys:font, NSFontAttributeName,nil];
+        
+        size =[content boundingRectWithSize:size options:NSStringDrawingUsesLineFragmentOrigin |NSStringDrawingUsesFontLeading attributes:dic context:nil].size;
+    }
+    else
+    {
+        size = [content sizeWithFont:font constrainedToSize:size lineBreakMode:NSLineBreakByCharWrapping];//ios7以上已经摒弃的这个方法
+    }
+    float height=size.height;
+    if (height>40) {
+        height=40;
+    }
+    cell.price.frame=CGRectMake(10, cell.name.frame.origin.y, 592/2, height);
+    
+    // cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;//添加>
+    cell.selectionStyle=UITableViewCellSelectionStyleNone;//点击时没有蓝色
+    //Configure the cell...
+    
+    return cell;
+}
+
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    
+    //   ${className}DetailViewController *vc=[[${className}DetailViewController alloc]init];
+    //    NSDictionary *dic=[self.array objectAtIndex:indexPath.row];
+    //    vc.infoId=[dic objectForKey:@"id"];
+    //    vc.dic=dic;
+    //    [self.navigationController pushViewController:vc animated:YES];
+    
+    
+}
+#break
+#end
+#end
+@end

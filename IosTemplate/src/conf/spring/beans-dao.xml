@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans
+	http://www.springframework.org/schema/beans/spring-beans-2.5.xsd">
+	<bean id="userDA0" class="com.shop.web.dao.UserDAOImpl" autowire="byName" >
+        <property name="dataSource" ref="dataSourceDev"/>
+     </bean>
+     
+     <bean id="goodsDA0" class="com.shop.web.dao.GoodsDAOImpl" autowire="byName" >
+        <property name="dataSource" ref="dataSourceDev"/>
+     </bean>									   
+ 	<bean id="categoryDA0" class="com.shop.web.dao.CategoryDAOImpl" autowire="byName" >
+        <property name="dataSource" ref="dataSourceDev"/>
+     </bean>
+     
+     <bean id="goodsDetailDA0" class="com.shop.web.dao.GoodsDetailDAOImpl" autowire="byName" >
+        <property name="dataSource" ref="dataSourceDev"/>
+     </bean>
+     
+    <bean id="goodsImageDA0" class="com.shop.web.dao.GoodsImageDAOImpl" autowire="byName" >
+        <property name="dataSource" ref="dataSourceDev"/>
+     </bean>
+     
+      <bean id="cartDA0" class="com.shop.web.dao.CartDAOImpl" autowire="byName" >
+        <property name="dataSource" ref="dataSourceDev"/>
+     </bean>
+     
+      <bean id="ordersDA0" class="com.shop.web.dao.OrdersDAOImpl" autowire="byName" >
+        <property name="dataSource" ref="dataSourceDev"/>
+     </bean>
+     
+      <bean id="orderGoodsDA0" class="com.shop.web.dao.OrderGoodsDAOImpl" autowire="byName" >
+        <property name="dataSource" ref="dataSourceDev"/>
+     </bean>
+</beans>

@@ -1,0 +1,101 @@
+<!--
+ Licensed to the Apache Software Foundation (ASF) under one or more
+ contributor license agreements.  See the NOTICE file distributed with
+ this work for additional information regarding copyright ownership.
+ The ASF licenses this file to You under the Apache License, Version 2.0
+ (the "License"); you may not use this file except in compliance with
+ the License.  You may obtain a copy of the License at
+
+      http://www.apache.org/licenses/LICENSE-2.0
+
+ Unless required by applicable law or agreed to in writing, software
+ distributed under the License is distributed on an "AS IS" BASIS,
+ WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ See the License for the specific language governing permissions and
+ limitations under the License.
+-->
+<!DOCTYPE form-validation PUBLIC
+     "-//Apache Software Foundation//DTD Commons Validator Rules Configuration 1.1//EN"
+     "http://jakarta.apache.org/commons/dtds/validator_1_1.dtd">
+     
+<form-validation>
+   <global>
+      <!--验证int参数在制定数字范围内,必须定义变量min与max-->
+      <validator name="intRange"
+                 classname="com.ddmap.framework.validator.Validators"
+                 method="validateIntRange"
+                 methodParams="java.lang.Object,org.apache.commons.validator.Field"
+                 msg="errors.intRange"/>
+                 
+      <!--验证int参数在制定数字最小值,必须定义变量min-->
+      <validator name="intMin"
+                 classname="com.ddmap.framework.validator.Validators"
+                 method="validateIntMin"
+                 methodParams="java.lang.Object,org.apache.commons.validator.Field"
+                 msg="errors.intMin"/>
+                 
+      <!--验证Date参数在制定日期之后,必须定义变量minDate,today则为今天-->
+      <validator name="dateMin"
+                 classname="com.ddmap.framework.validator.Validators"
+                 method="validateDateMin"
+                 methodParams="java.lang.Object,org.apache.commons.validator.Field"
+                 msg="errors.dateMin"/>
+                 
+      <!--验证float参数在制定数字范围内,必须定义变量min与max-->
+      <validator name="floatRange"
+                 classname="com.ddmap.framework.validator.Validators"
+                 method="validateFloatRange"
+                 methodParams="java.lang.Object,org.apache.commons.validator.Field"
+                 msg="errors.floatRange"/>
+                 
+                 
+       <!--验证整数型参数是否为空(即绑定后不为0)-->
+      <validator name="intRequire"
+                 classname="com.ddmap.framework.validator.Validators"
+                 method="validateIntRequire"
+                 methodParams="java.lang.Object,org.apache.commons.validator.Field"
+                 msg="errors.required"/>
+                 
+      <!--验证数组型参数是否为空-->
+      <validator name="arrayRequire"
+                 classname="com.ddmap.framework.validator.Validators"
+                 method="validateArrayRequire"
+                 methodParams="java.lang.Object,org.apache.commons.validator.Field"
+                 msg="errors.required"/>
+                 
+	  <!--验证参数是否为空--> 
+      <validator name="required"
+                 classname="com.ddmap.framework.validator.Validators"
+                 method="validateRequired"
+                 methodParams="java.lang.Object,org.apache.commons.validator.Field"
+                 msg="errors.required"/>
+            
+      <!--验证参数与别的参数是否相等,必须定义变量compareField,compareField的值为别的field的name --> 
+      <validator name="equal"
+                 classname="com.ddmap.framework.validator.Validators"
+                 method="validateEqual"
+                 methodParams="java.lang.Object,org.apache.commons.validator.Field"
+                 msg="errors.equal"/>
+               
+      <!--验证参数是否为字节类型 -->  
+      <validator name="byte"
+                 classname="com.ddmap.framework.validator.Validators"
+                 method="validateByte"
+                 methodParams="java.lang.Object,org.apache.commons.validator.Field"
+                 msg="errors.byte"/>
+                 
+      <!--验证参数是否为整型 -->
+      <validator name="int"
+                 classname="com.ddmap.framework.validator.Validators"
+                 method="validateInt"
+                 methodParams="java.lang.Object,org.apache.commons.validator.Field"
+                 msg="errors.int"/>
+                 
+      <!--验证参数长度,必须定义变量minLength与maxLength -->   
+      <validator name="lengthRange"
+                 classname="com.ddmap.framework.validator.Validators"
+                 method="validateLengthRange"
+                 methodParams="java.lang.Object,org.apache.commons.validator.Field"
+                 msg="errors.lengthRange"/>
+   </global>
+</form-validation>

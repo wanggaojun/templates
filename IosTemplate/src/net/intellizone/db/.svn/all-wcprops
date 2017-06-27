@@ -1,0 +1,17 @@
+K 25
+svn:wc:ra_dav:version-url
+V 68
+/svn/platform/!svn/ver/576/trunk/db/src/main/java/net/intellizone/db
+END
+MysqlDataSourceManager.java
+K 25
+svn:wc:ra_dav:version-url
+V 96
+/svn/platform/!svn/ver/576/trunk/db/src/main/java/net/intellizone/db/MysqlDataSourceManager.java
+END
+OracleDataSourceManager.java
+K 25
+svn:wc:ra_dav:version-url
+V 97
+/svn/platform/!svn/ver/531/trunk/db/src/main/java/net/intellizone/db/OracleDataSourceManager.java
+END

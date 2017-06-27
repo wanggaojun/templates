@@ -1,0 +1,36 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta content="text/html; charset=utf-8" http-equiv="Content-Type" />
+<head>
+    <title>GOODS List</title>
+</head>
+    
+<body>
+    <h2>GOODS LIST</h2>
+    <table width="600" border="1" cellspacing="1" cellpadding="1">
+      <tr bgcolor="#999999">
+        <td>GOODS ID</td>
+        <td>Name</td>
+        <td>goodsDesc</td>
+        <td>goodsPrice</td>
+        <td>id</td>
+        <td>add to cart</td>
+      </tr>
+    #foreach($goods in $list)  
+      <tr>
+        <td>
+          <a href="dispalyCourse.htm?id=${goods.id}">
+          ${goods.id}  
+          </a>
+        </td>
+        <td>${goods.goodsName}</td>
+        <td>$!{goods.goodsDesc}</td>
+        <td>$!{goods.goodsPrice} </td>
+        <td> #foreach($detail in $goods.goodsDetail) $!{detail.id} <a href="/pshop/cart/add/$!{detail.id}">加入购物车</a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="/pshop/cart/$!{detail.id}">my cart</a>&nbsp;<a href="/pshop/cart/buy/$!{goods.id}/$!{detail.id}">buy now</a>#end</td>
+         <td><a href="/pshop/cart/add/$!{goods.id}">加入购物车</a><a href="/pshop/cart/$!{goods.id}">my cart</a><a href="/pshop/cart/buy/$!{goods.id}">buy now</a></td>
+      </tr>
+    #end  
+    </table>
+</body>
+</html>

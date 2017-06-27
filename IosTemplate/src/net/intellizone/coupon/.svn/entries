@@ -1,0 +1,79 @@
+10
+
+dir
+910
+http://10.4.8.125:81/svn/platform/trunk/coupon/src/main/java/net/intellizone/coupon
+http://10.4.8.125:81/svn/platform
+
+
+
+2003-01-24T05:11:40.375000Z
+910
+sunbin
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+481e45aa-b9fe-cf4a-b5b0-401c2de9e872
+
+usercenter
+dir
+
+system
+dir
+
+filter
+dir
+
+msg
+dir
+
+admin
+dir
+
+pay
+dir
+
+activity
+dir
+
+coupon
+dir
+
+index
+dir
+
+ismp
+dir
+
+shop
+dir
+
+order
+dir
+
+lucene
+dir
+
+terminal
+dir
+
+util
+dir
+
+bulletin
+dir
+
+user
+dir
+

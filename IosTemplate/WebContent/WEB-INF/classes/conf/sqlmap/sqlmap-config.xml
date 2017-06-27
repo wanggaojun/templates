@@ -1,0 +1,18 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<!DOCTYPE sqlMapConfig PUBLIC "-//iBATIS.com//DTD SQL Map Config 2.0//EN" "http://www.ibatis.com/dtd/sql-map-config-2.dtd">
+
+<sqlMapConfig>
+<settings cacheModelsEnabled="true" lazyLoadingEnabled="false" enhancementEnabled="true" useStatementNamespaces="true" /> 
+	<sqlMap resource="conf/sqlmap/common_sqlMap.xml" />
+	<sqlMap resource="conf/sqlmap/user_SqlMap.xml" />
+	<sqlMap resource="conf/sqlmap/category_SqlMap.xml" />
+	<sqlMap resource="conf/sqlmap/cart_SqlMap.xml" />
+	<sqlMap resource="conf/sqlmap/goods_SqlMap.xml" />
+	<sqlMap resource="conf/sqlmap/goods_detail_SqlMap.xml" />
+	<sqlMap resource="conf/sqlmap/goods_image_SqlMap.xml" />
+	<sqlMap resource="conf/sqlmap/orders_SqlMap.xml" />
+	<sqlMap resource="conf/sqlmap/user_address_SqlMap.xml" />
+	<sqlMap resource="conf/sqlmap/order_goods_SqlMap.xml" />
+    <!--<sqlMap resource="conf/sqlmap/User.xml"/>
+    <sqlMap resource="conf/sqlmap/Bus.xml"/>-->
+</sqlMapConfig>

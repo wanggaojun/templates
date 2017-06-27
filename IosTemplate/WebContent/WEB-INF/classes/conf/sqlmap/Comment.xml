@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE sqlMap
+	PUBLIC "-//iBATIS.com//DTD SQL Map 2.0//EN"
+	"http://www.ibatis.com/dtd/sql-map-2.dtd">
+	
+<sqlMap namespace="Comment">
+    
+	<!-- <resultMap id="comment" class="com.ddmap.wap.entity.Comment">
+		<result property="userid" column="userid"/>
+		<result property="username" column="username"/>
+		<result property="pcomment" column="pcomment"/>
+		<result property="ptime" column="ptime"/>
+	</resultMap>
+	
+	<select id="getComment" resultMap="comment">
+		select 
+		<isNotNull property="line">
+			top $line$
+		</isNotNull>
+		 userid, LEFT(pcomment,200) as pcomment, ptime, username from mst_comment where pid = #pid#
+		and (pmname = 'poi' or pmname = 'poi_catch') and isvalid != 'D' order by ptime desc
+	</select>
+	
+	<insert id="insertComment">
+		insert into mst_comment (pid, userid, username, pcomment, ptime) values (#pid#, #userid#, #username#, #pcomment#, #ptime#)
+	</insert>-->
+    
+</sqlMap>
